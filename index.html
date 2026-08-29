@@ -3,52 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="University class routine viewer">
+
+  <meta name="theme-color" content="#050508">
+  <meta name="description" content="CSE Routine — your university class schedule">
+
   <link rel="manifest" href="./manifest.json">
   <link rel="stylesheet" href="./style.css">
+
   <title>CSE Routine</title>
 </head>
+
 <body>
+
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
   <header class="topbar">
-    <div>
-      <p class="eyebrow">CSE ROUTINE</p>
-      <h1>My Class Schedule</h1>
-      <p id="meta" class="muted">Loading routine…</p>
+
+    <div class="brand">
+      <div class="brand-mark">
+        <span></span>
+      </div>
+
+      <div>
+        <div class="eyebrow">CSE / ROUTINE</div>
+        <h1>My Schedule</h1>
+      </div>
     </div>
-    <button id="installBtn" class="install hidden">Install App</button>
+
+    <button id="installBtn" class="install hidden">
+      Install
+    </button>
+
   </header>
 
+
   <main class="container">
-    <section class="controls card">
-      <label for="sectionSelect">Your section</label>
-      <select id="sectionSelect"></select>
-      <button id="todayBtn" class="secondary">Today</button>
-    </section>
 
-    <section class="hero card">
-      <div>
-        <p class="eyebrow">TODAY</p>
-        <h2 id="todayTitle">Loading…</h2>
+    <!-- SECTION SELECTOR -->
+
+    <section class="section-picker">
+
+      <div class="picker-heading">
+
+        <div>
+          <p class="eyebrow">YOUR SECTION</p>
+          <h2>Find your class</h2>
+        </div>
+
+        <div id="sectionCount" class="section-count"></div>
+
       </div>
-      <div id="nextClass" class="next-class"></div>
+
+
+      <div class="search-box">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M16.5 16.5L21 21"></path>
+        </svg>
+
+        <input
+          id="sectionSearch"
+          type="text"
+          autocomplete="off"
+          placeholder="Search section… e.g. 71_C"
+        >
+
+        <button id="clearSearch" class="clear-search hidden">
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="suggested-heading">
+        <span>Suggested</span>
+        <span class="muted">Tap a section</span>
+      </div>
+
+      <div id="suggestedSections" class="suggested-sections"></div>
+
+      <div id="sectionResults" class="section-results"></div>
+
     </section>
 
-    <nav class="tabs" aria-label="Routine views">
-      <button class="tab active" data-view="today">Today</button>
-      <button class="tab" data-view="week">Week</button>
-    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div>
+
+          <div class="date-label">
+            <span class="live-dot"></span>
+            <span id="todayLabel">TODAY</span>
+          </div>
+
+          <h2 id="todayTitle">
+            Loading…
+          </h2>
+
+        </div>
+
+        <div class="selected-section">
+          <span>SECTION</span>
+          <strong id="selectedSectionLabel">—</strong>
+        </div>
+
+      </div>
+
+
+      <div id="nextClass" class="next-class">
+        Loading…
+      </div>
+
+    </section>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="view-header">
+
+      <div class="tabs">
+
+        <button
+          class="tab active"
+          data-view="today">
+          Today
+        </button>
+
+        <button
+          class="tab"
+          data-view="week">
+          Week
+        </button>
+
+      </div>
+
+      <button id="todayBtn" class="today-button">
+        Jump to today
+      </button>
+
+    </div>
+
+
+    <!-- TODAY -->
 
     <section id="todayView" class="view"></section>
+
+
+    <!-- WEEK -->
+
     <section id="weekView" class="view hidden"></section>
+
   </main>
 
+
   <footer>
-    <span id="footerMeta">Routine</span>
+
+    <div class="footer-brand">
+      CSE / ROUTINE
+    </div>
+
+    <div id="footerMeta">
+      Routine
+    </div>
+
     <span>•</span>
+
     <span>Made for CSE students</span>
+
   </footer>
 
+
   <script src="./app.js"></script>
+
 </body>
 </html>
