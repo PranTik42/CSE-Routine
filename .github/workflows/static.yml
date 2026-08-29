@@ -1,0 +1,70 @@
+name: Build and Deploy Routine
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "routine.pdf"
+      - "parser/**"
+      - "requirements.txt"
+      - "index.html"
+      - "style.css"
+      - "app.js"
+      - "manifest.json"
+      - "sw.js"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install parser dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Parse routine PDF
+        run: |
+          mkdir -p docs
+          python parser/parse_routine.py routine.pdf docs/data.json
+
+      - name: Copy website files
+        run: |
+          cp index.html docs/
+          cp style.css docs/
+          cp app.js docs/
+          cp manifest.json docs/
+          cp sw.js docs/
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
