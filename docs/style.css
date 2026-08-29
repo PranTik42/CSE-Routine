@@ -1,0 +1,74 @@
+:root {
+  --bg: #080b12;
+  --card: #111722;
+  --card2: #151c2a;
+  --text: #f4f7fb;
+  --muted: #94a0b4;
+  --line: #242d3d;
+  --accent: #7c8cff;
+  --accent2: #9aa6ff;
+  --danger: #ff8d8d;
+  --shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #121a2b 0, var(--bg) 42%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+button, select { font: inherit; }
+button { cursor: pointer; }
+.topbar, .container, footer { width: min(100% - 28px, 1050px); margin: 0 auto; }
+.topbar { padding: 34px 0 18px; display:flex; justify-content:space-between; gap:20px; align-items:flex-start; }
+h1 { margin: 4px 0 5px; font-size: clamp(28px, 5vw, 44px); letter-spacing: -.04em; }
+h2 { margin: 3px 0 0; font-size: clamp(23px, 4vw, 32px); }
+.eyebrow { margin:0; font-size:11px; font-weight:800; letter-spacing:.15em; color:var(--accent2); }
+.muted { color:var(--muted); margin:0; }
+.card { background: linear-gradient(145deg, rgba(20,27,40,.98), rgba(13,18,28,.98)); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); }
+.controls { padding:16px; display:flex; gap:10px; align-items:end; margin-bottom:16px; }
+.controls label { display:block; font-size:12px; color:var(--muted); margin-bottom:5px; }
+.controls select { min-width:220px; background:var(--card2); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:11px 13px; outline:none; }
+.secondary, .install { border:1px solid var(--line); color:var(--text); background:var(--card2); border-radius:12px; padding:10px 14px; }
+.install { white-space:nowrap; }
+.hero { padding:20px; display:flex; justify-content:space-between; gap:20px; align-items:center; margin-bottom:18px; }
+.next-class { text-align:right; color:var(--muted); min-width:210px; }
+.next-class strong { color:var(--text); display:block; font-size:20px; margin-bottom:3px; }
+.tabs { display:flex; gap:8px; margin:0 0 15px; }
+.tab { background:transparent; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:9px 16px; }
+.tab.active { background:var(--accent); color:white; border-color:var(--accent); }
+.day-title { display:flex; justify-content:space-between; align-items:end; margin:20px 0 10px; }
+.day-title h3 { margin:0; font-size:18px; }
+.day-title span { color:var(--muted); font-size:12px; }
+.schedule { display:grid; gap:10px; }
+.class-card { display:grid; grid-template-columns:105px 1fr auto; gap:16px; padding:16px; background:var(--card); border:1px solid var(--line); border-radius:16px; }
+.time { color:var(--accent2); font-weight:800; font-size:14px; }
+.course { font-size:18px; font-weight:800; }
+.details { color:var(--muted); font-size:13px; margin-top:5px; line-height:1.5; }
+.room { align-self:center; color:var(--text); font-size:13px; padding:7px 10px; border-radius:10px; background:var(--card2); border:1px solid var(--line); white-space:nowrap; }
+.empty { padding:30px; text-align:center; color:var(--muted); border:1px dashed var(--line); border-radius:16px; }
+.week-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.week-day { padding:15px; background:var(--card); border:1px solid var(--line); border-radius:16px; }
+.week-day h3 { margin:0 0 12px; }
+.mini { padding:10px 0; border-top:1px solid var(--line); }
+.mini:first-of-type { border-top:0; }
+.mini .mini-time { color:var(--accent2); font-size:12px; font-weight:800; }
+.mini .mini-course { font-weight:750; margin-top:2px; }
+.mini .mini-room { color:var(--muted); font-size:12px; margin-top:2px; }
+footer { color:var(--muted); font-size:12px; display:flex; gap:8px; justify-content:center; padding:35px 0 28px; }
+.hidden { display:none !important; }
+.error { color:var(--danger); }
+@media (max-width:700px) {
+  .topbar { padding-top:24px; }
+  .controls { align-items:stretch; flex-wrap:wrap; }
+  .controls select { flex:1; min-width:160px; }
+  .hero { align-items:flex-start; flex-direction:column; }
+  .next-class { text-align:left; min-width:0; }
+  .class-card { grid-template-columns:1fr; gap:7px; }
+  .room { justify-self:start; }
+  .week-grid { grid-template-columns:1fr; }
+}

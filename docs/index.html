@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="University class routine viewer">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style.css">
+  <title>CSE Routine</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CSE ROUTINE</p>
+      <h1>My Class Schedule</h1>
+      <p id="meta" class="muted">Loading routine…</p>
+    </div>
+    <button id="installBtn" class="install hidden">Install App</button>
+  </header>
+
+  <main class="container">
+    <section class="controls card">
+      <label for="sectionSelect">Your section</label>
+      <select id="sectionSelect"></select>
+      <button id="todayBtn" class="secondary">Today</button>
+    </section>
+
+    <section class="hero card">
+      <div>
+        <p class="eyebrow">TODAY</p>
+        <h2 id="todayTitle">Loading…</h2>
+      </div>
+      <div id="nextClass" class="next-class"></div>
+    </section>
+
+    <nav class="tabs" aria-label="Routine views">
+      <button class="tab active" data-view="today">Today</button>
+      <button class="tab" data-view="week">Week</button>
+    </nav>
+
+    <section id="todayView" class="view"></section>
+    <section id="weekView" class="view hidden"></section>
+  </main>
+
+  <footer>
+    <span id="footerMeta">Routine</span>
+    <span>•</span>
+    <span>Made for CSE students</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
